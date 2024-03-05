@@ -314,7 +314,7 @@ def optimize(toi, visualize):
 
     losses = []
     # forward('initial{}'.format(robot_id), visualize=visualize)
-    for iter in range(100):
+    for iter in range(optimizationSteps): # 100):
         clear()
         # with ti.ad.Tape(loss) automatically clears all gradients
         with ti.ad.Tape(loss):
@@ -368,15 +368,15 @@ def optimize(toi, visualize):
 
 
 robot_id = 0
-if len(sys.argv) != 3:
+if len(sys.argv) != 4:
     print(
-        "Usage: python3 mass_spring.py [robot_id=0, 1, 2, ...] [task=train/plot]"
+        "Usage: python3 mass_spring.py [robot_id=0, 1, 2, ...] [task=train/plot] [optimization steps = 1, 2, ...]"
     )
     exit(-1)
 else:
     robot_id = int(sys.argv[1])
     task = sys.argv[2]
-
+    optimizationSteps = int(sys.argv[3])
 
 def main():
 
