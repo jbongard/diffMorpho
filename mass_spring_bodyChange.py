@@ -197,7 +197,7 @@ def compute_loss(t: ti.i32):
     loss[None] = -x[t, head_id][0]
 
 
-gui = ti.GUI("Mass Spring Robot", (512, 512), background_color=0xFFFFFF)
+gui = ti.GUI("Mass Spring Robot", (512, 512), background_color=0xFFFFFF, show_gui=False)
 
 
 def forward(output=None, visualize=True):
@@ -316,8 +316,8 @@ def optimize(toi, visualize):
     # forward('initial{}'.format(robot_id), visualize=visualize)
     for iter in range(100):
         clear()
-        # with ti.Tape(loss) automatically clears all gradients
-        with ti.Tape(loss):
+        # with ti.ad.Tape(loss) automatically clears all gradients
+        with ti.ad.Tape(loss):
             forward(visualize=visualize)
 
         print('Iter=', iter, 'Loss=', loss[None])
