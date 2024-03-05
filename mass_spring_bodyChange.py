@@ -214,6 +214,8 @@ def forward(output=None, visualize=True):
 
     total_steps = steps if not output else steps * 2
 
+    frameIndex = 0
+    
     for t in range(1, total_steps):
         compute_center(t - 1)
         nn1(t - 1)
@@ -259,7 +261,8 @@ def forward(output=None, visualize=True):
             # circle(goal[None][0], goal[None][1], (0.6, 0.2, 0.2))
 
             if output:
-                gui.show('mass_spring/{}/{:04d}.png'.format(output, t))
+                gui.show('mass_spring/{}/{:d}.png'.format(output, frameIndex))
+                frameIndex = frameIndex + 1
             else:
                 gui.show()
 
