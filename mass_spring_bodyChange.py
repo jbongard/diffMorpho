@@ -353,9 +353,9 @@ def optimize(toi, visualize):
 
         for i in range(n_objects):
             if math.fabs(x.grad[0,i][0]) < 0.5:
-               x[0, i][0] -= 0.001 * x.grad[0,i][0]
+               x[0, i][0] -= 0.002 * x.grad[0,i][0]
             if math.fabs(x.grad[0,i][1]) < 0.5:
-               x[0, i][1] -= 0.001 * x.grad[0,i][1]
+               x[0, i][1] -= 0.002 * x.grad[0,i][1]
 
         for i in range(n_springs):
 
